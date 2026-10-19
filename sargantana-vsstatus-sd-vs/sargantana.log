@@ -1,0 +1,11 @@
+csrw vsstatus from M-mode, then csrr vsstatus:
+  write VS=3 FS=0           VS=3 FS=0 SD=0   <-- SD wrong
+  write VS=0 FS=3           VS=0 FS=3 SD=1
+  write VS=3 FS=3           VS=3 FS=3 SD=1
+  write VS=1 FS=0           VS=1 FS=0 SD=0
+vadd.vv in VS-mode with vsstatus.VS = Initial:
+  csrr sstatus in VS-mode   VS=3 FS=0 SD=0   <-- SD wrong
+  csrr vsstatus in M-mode   VS=3 FS=0 SD=0   <-- SD wrong
+[1;31mSimulation ended with error code     3[0m
+[212121] %Error: l2_behav.sv:464: Assertion failed in TOP.sim_top.l2_inst.unnamedblk2
+%Error: core_tile/simulator/models/./hdl/l2_behav.sv:464: Verilog $stop

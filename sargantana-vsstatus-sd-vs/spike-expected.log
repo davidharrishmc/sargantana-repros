@@ -1,0 +1,9 @@
+csrw vsstatus from M-mode, then csrr vsstatus:
+  write VS=3 FS=0           VS=3 FS=0 SD=1
+  write VS=0 FS=3           VS=0 FS=3 SD=1
+  write VS=3 FS=3           VS=3 FS=3 SD=1
+  write VS=1 FS=0           VS=1 FS=0 SD=0
+
+vadd.vv in VS-mode with vsstatus.VS = Initial:
+  csrr sstatus in VS-mode   VS=3 FS=0 SD=1
+  csrr vsstatus in M-mode   VS=3 FS=0 SD=1
