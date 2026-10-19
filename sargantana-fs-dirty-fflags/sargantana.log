@@ -1,0 +1,38 @@
+FP-register writes:
+  fadd.s f0, f1, f2       (writes f0)        FS=3 SD=1 fflags=0x00
+  fmadd.s f0, f1, f2, f1  (writes f0)        FS=3 SD=1 fflags=0x00
+  fdiv.s f0, f2, f1       (writes f0)        FS=3 SD=1 fflags=0x00
+  fsqrt.s f0, f1          (writes f0)        FS=3 SD=1 fflags=0x00
+  fsgnj.s f0, f1, f2      (writes f0)        FS=3 SD=1 fflags=0x00
+  fmin.s f0, f1, f2       (writes f0)        FS=3 SD=1 fflags=0x00
+  flw f0, 0(a4)           (writes f0)        FS=3 SD=1 fflags=0x00
+  fld f0, 0(a4)           (writes f0)        FS=3 SD=1 fflags=0x00
+  fmv.w.x f0, x0          (writes f0)        FS=3 SD=1 fflags=0x00
+  fmv.d.x f0, x0          (writes f0)        FS=3 SD=1 fflags=0x00
+  fcvt.s.w f0, x0         (writes f0)        FS=3 SD=1 fflags=0x00
+  fcvt.d.s f0, f1         (writes f0)        FS=3 SD=1 fflags=0x00
+  fli.s f0, 1.0           (Zfa, writes f0)   FS=3 SD=1 fflags=0x00
+  vfmv.f.s f0, v2         (writes f0)        FS=3 SD=1 fflags=0x00
+Instructions that only raise fflags:
+  feq.s x8, f4, f4        (sNaN, NV)         FS=1 SD=1 fflags=0x10   <-- FS must be Dirty (3)
+  flt.s x8, f4, f4        (sNaN, NV)         FS=1 SD=1 fflags=0x10   <-- FS must be Dirty (3)
+  fle.d x8, f7, f7        (sNaN, NV)         FS=1 SD=1 fflags=0x10   <-- FS must be Dirty (3)
+  fcvt.w.s x8, f5         (1.5, NX)          FS=1 SD=1 fflags=0x01   <-- FS must be Dirty (3)
+  fcvt.wu.s x8, f6        (-1.0, NV)         FS=1 SD=1 fflags=0x10   <-- FS must be Dirty (3)
+  fcvt.l.d x8, f7         (sNaN, NV)         FS=1 SD=1 fflags=0x10   <-- FS must be Dirty (3)
+  vfadd.vv v3, v1, v1     (sNaN, NV)         FS=1 SD=1 fflags=0x10   <-- FS must be Dirty (3)
+  vmfeq.vv v3, v1, v1     (sNaN, NV)         FS=1 SD=1 fflags=0x10   <-- FS must be Dirty (3)
+  vfcvt.x.f.v v3, v2      (1.5, NX)          FS=1 SD=1 fflags=0x01   <-- FS must be Dirty (3)
+  vfredusum.vs v3, v1, v1 (sNaN, NV)         FS=1 SD=1 fflags=0x10   <-- FS must be Dirty (3)
+FP CSR writes:
+  csrw fflags, x0                            FS=3 SD=1 fflags=0x00
+  fsrmi 1                                    FS=3 SD=1 fflags=0x00
+  csrw fcsr, x0                              FS=3 SD=1 fflags=0x00
+Neither (FS may stay Initial):
+  feq.s x8, f1, f1        (no flag)          FS=1 SD=1 fflags=0x00
+  fclass.s x8, f4                            FS=1 SD=1 fflags=0x00
+  fmv.x.w x8, f1                             FS=1 SD=1 fflags=0x00
+[1;31mSimulation ended with error code    10[0m
+[263983] %Error: l2_behav.sv:464: Assertion failed in TOP.sim_top.l2_inst.unnamedblk2
+%Error: core_tile/simulator/models/./hdl/l2_behav.sv:464: Verilog $stop
+Aborting...
