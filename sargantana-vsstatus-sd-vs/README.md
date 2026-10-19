@@ -1,6 +1,6 @@
 # vsstatus.SD ignores vsstatus.VS
 
-Reproducer for ISSUE_LINK.
+Reproducer for [bsc-loca/sargantana#118](https://github.com/bsc-loca/sargantana/issues/118).
 
 Cases A-D write `vsstatus` from M-mode, wait 32 nops and read it back. Case E enters VS-mode
 (hgatp = vsatp = Bare) with `vsstatus.VS` = Initial, executes `vadd.vv`, reads `sstatus`
