@@ -1,6 +1,6 @@
 # Reproducer: vsstatus.SD must read 1 whenever vsstatus.VS (or FS, XS) is Dirty.
-# Privileged spec, Hypervisor extension, vsstatus: "vsstatus ... is a VS-mode copy of sstatus";
-# sstatus.SD summarizes FS, VS and XS (SD = 1 if any of them is Dirty).
+# Hypervisor extension (norm:vsstatus_sd_op_vs): "If vsstatus.VS is Dirty, vsstatus.SD is 1;
+# otherwise, vsstatus.SD is set in accordance with existing specifications."
 #
 # Cases A-D write vsstatus from M-mode, wait 32 nops and read it back.  Case E enters VS-mode
 # with vsstatus.VS = Initial, executes vadd.vv (which must set vsstatus.VS and mstatus.VS to
