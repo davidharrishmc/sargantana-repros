@@ -1,0 +1,14 @@
+Supervisor software interrupt (mip.SSIP, mideleg.SSI = 1) taken into HS-mode:
+  from VS-mode   scause=8000000000000001 GVA=1 SPV=1 SPVP=1   <-- GVA must be 0
+  from VU-mode   scause=8000000000000001 GVA=1 SPV=1 SPVP=0   <-- GVA must be 0
+
+Exception taken into HS-mode:
+  ecall from VS  scause=000000000000000a GVA=0 SPV=1 SPVP=1
+
+VS-level software interrupt (hvip.VSSIP, hideleg = 0) taken into HS-mode:
+  from VS-mode   scause=8000000000000002 GVA=1 SPV=1 SPVP=1   <-- GVA must be 0
+Simulation ended with error code     3
+[213719] %Error: l2_behav.sv:464: Assertion failed in TOP.sim_top.l2_inst.unnamedblk2
+%Error: core_tile/simulator/models/./hdl/l2_behav.sv:464: Verilog $stop
+Aborting...
+./run.sh: Aborted                 (core dumped) "$TILE/sim" +bootrom="$TILE/bootrom.hex" +max-cycles=3000000 +load=gva.elf

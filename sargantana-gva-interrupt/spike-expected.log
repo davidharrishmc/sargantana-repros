@@ -1,0 +1,9 @@
+Supervisor software interrupt (mip.SSIP, mideleg.SSI = 1) taken into HS-mode:
+  from VS-mode   scause=8000000000000001 GVA=0 SPV=1 SPVP=1
+  from VU-mode   scause=8000000000000001 GVA=0 SPV=1 SPVP=0
+
+Exception taken into HS-mode:
+  ecall from VS  scause=000000000000000a GVA=0 SPV=1 SPVP=1
+
+VS-level software interrupt (hvip.VSSIP, hideleg = 0) taken into HS-mode:
+  from VS-mode   scause=8000000000000002 GVA=0 SPV=1 SPVP=1
