@@ -1,6 +1,6 @@
 # hstatus.GVA is set on interrupts taken from VS-mode or VU-mode
 
-Reproducer for [bsc-loca/sargantana#ISSUE](https://github.com/bsc-loca/sargantana/issues/ISSUE).
+Reproducer for [bsc-loca/sargantana#119](https://github.com/bsc-loca/sargantana/issues/119).
 
 Cases A and B set `mip.SSIP` (with `mideleg.SSI` = 1) from M-mode and `mret` into VS-mode or
 VU-mode (hgatp = vsatp = Bare), where the supervisor software interrupt is taken into HS-mode at
