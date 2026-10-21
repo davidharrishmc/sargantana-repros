@@ -1,6 +1,6 @@
 # LCOFI is taken before VSEI, VSSI and VSTI in HS-mode
 
-Reproducer for [bsc-loca/sargantana#ISSUE_LCOFI](https://github.com/bsc-loca/sargantana/issues/ISSUE_LCOFI).
+Reproducer for [bsc-loca/sargantana#120](https://github.com/bsc-loca/sargantana/issues/120).
 
 Each case clears every pending and enable bit from M-mode with `mstatus.MIE` = 0, makes a pair of interrupts pending
 (`mip.SSIP`, `mip.LCOFIP` and `hvip.VS*IP`, all written from M-mode), enables both in `mie`, records `mip`, `mie` and

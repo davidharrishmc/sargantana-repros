@@ -1,6 +1,6 @@
 # WFI in VU-mode with mstatus.TW = 1 raises a virtual-instruction exception
 
-Reproducer for [bsc-loca/sargantana#ISSUE_WFI](https://github.com/bsc-loca/sargantana/issues/ISSUE_WFI).
+Reproducer for [bsc-loca/sargantana#121](https://github.com/bsc-loca/sargantana/issues/121).
 
 Each case sets `mstatus.TW` and `hstatus.VTW` from M-mode and `mret`s into VU-mode or VS-mode (hgatp = vsatp = Bare) at
 a `wfi` followed by an `ecall`. Nothing is pending and every trap goes to M-mode (`medeleg` = `mideleg` = 0), which
