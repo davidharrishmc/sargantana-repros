@@ -1,6 +1,6 @@
 # Interrupts delegated to VS-mode by hideleg are taken in HS-mode and U-mode
 
-Reproducer for [bsc-loca/sargantana#ISSUE](https://github.com/bsc-loca/sargantana/issues/ISSUE).
+Reproducer for [bsc-loca/sargantana#122](https://github.com/bsc-loca/sargantana/issues/122).
 
 Each case sets `hie` = 0x444, `hideleg` and `hvip` from M-mode, with `sstatus.SIE` = `vsstatus.SIE` = 1, and `mret`s to
 HS-mode, U-mode or VS-mode (hgatp = vsatp = Bare), which spins and then ecalls to M-mode. The HS-mode and VS-mode
