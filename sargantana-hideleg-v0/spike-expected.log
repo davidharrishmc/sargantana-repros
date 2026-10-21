@@ -1,0 +1,6 @@
+hie = 0x444, sstatus.SIE = vsstatus.SIE = 1; where the pending interrupt is taken:
+  HS-mode, hideleg.VSSI = 1, VSSI pending:   taken in -- cause=0000000000000000  expected --
+  HS-mode, hideleg.VSEI = 1, VSEI pending:   taken in -- cause=0000000000000000  expected --
+  U-mode,  hideleg.VSSI = 1, VSSI pending:   taken in -- cause=0000000000000000  expected --
+  VS-mode, hideleg.VSSI = 1, VSSI pending:   taken in VS cause=8000000000000001  expected VS
+  HS-mode, hideleg = 0,      VSSI pending:   taken in HS cause=8000000000000002  expected HS
