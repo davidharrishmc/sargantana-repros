@@ -1,0 +1,9 @@
+WFI in the guest with nothing pending; mcause in hex (02 illegal, 16 virtual, 08/0a ecall = WFI completed):
+  VU TW=1 VTW=0  mcause=16 allowed=02 or 08   <-- not allowed
+  VU TW=1 VTW=1  mcause=16 allowed=02 or 08   <-- not allowed
+  VU TW=0 VTW=0  mcause=16 allowed=16 or 16
+  VU TW=0 VTW=1  mcause=16 allowed=16 or 16
+  VS TW=1 VTW=0  mcause=02 allowed=02 or 0a
+  VS TW=1 VTW=1  mcause=02 allowed=02 or 0a
+  VS TW=0 VTW=1  mcause=16 allowed=16 or 0a
+Simulation ended with error code     2

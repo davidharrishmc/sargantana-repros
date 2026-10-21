@@ -1,0 +1,7 @@
+Pending and enabled pair, HS-mode with sstatus.SIE = 1; first scause taken:
+  VSEI + LCOFI  mip=2480 mie=2400 hip=0400 taken=800000000000000a expected=800000000000000a
+  VSSI + LCOFI  mip=2084 mie=2004 hip=0004 taken=8000000000000002 expected=8000000000000002
+  VSTI + LCOFI  mip=20c0 mie=2040 hip=0040 taken=8000000000000006 expected=8000000000000006
+  SSI  + LCOFI  mip=2082 mie=2002 hip=0000 taken=8000000000000001 expected=8000000000000001
+  SSI  + VSEI   mip=0482 mie=0402 hip=0400 taken=8000000000000001 expected=8000000000000001
+  VSEI + VSSI   mip=0484 mie=0404 hip=0404 taken=800000000000000a expected=800000000000000a

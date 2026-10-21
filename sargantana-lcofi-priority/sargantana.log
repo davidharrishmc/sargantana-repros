@@ -1,0 +1,8 @@
+Pending and enabled pair, HS-mode with sstatus.SIE = 1; first scause taken:
+  VSEI + LCOFI  mip=2400 mie=2400 hip=0400 taken=800000000000000d expected=800000000000000a   <-- wrong
+  VSSI + LCOFI  mip=2004 mie=2004 hip=0004 taken=800000000000000d expected=8000000000000002   <-- wrong
+  VSTI + LCOFI  mip=2040 mie=2040 hip=0040 taken=800000000000000d expected=8000000000000006   <-- wrong
+  SSI  + LCOFI  mip=2002 mie=2002 hip=0000 taken=8000000000000001 expected=8000000000000001
+  SSI  + VSEI   mip=0402 mie=0402 hip=0400 taken=8000000000000001 expected=8000000000000001
+  VSEI + VSSI   mip=0404 mie=0404 hip=0404 taken=800000000000000a expected=800000000000000a
+Simulation ended with error code     3
