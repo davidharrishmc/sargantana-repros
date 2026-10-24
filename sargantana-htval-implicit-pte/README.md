@@ -1,6 +1,6 @@
 # htval on a guest-page fault during a VS-stage page-table read is not the PTE's guest physical address
 
-Reproducer for bsc-loca/sargantana#NNN.
+Reproducer for bsc-loca/sargantana#123.
 
 Two-stage translation, Sv39 over Sv39x4. The G-stage maps only GPA 0x8000_0000..0xbfff_ffff. VA 0x40a4_5678 walks
 through a VS-stage level-1 table at GPA 0xc012_3000 and VA 0x00a4_5678 through a level-0 table at GPA 0xc045_6000;

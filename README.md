@@ -10,3 +10,5 @@ Standalone reproducers for issues filed against [bsc-loca/sargantana](https://gi
 | [sargantana#120](https://github.com/bsc-loca/sargantana/issues/120) | [sargantana-lcofi-priority](sargantana-lcofi-priority/) |
 | [sargantana#121](https://github.com/bsc-loca/sargantana/issues/121) | [sargantana-vu-wfi-tw](sargantana-vu-wfi-tw/) |
 | [sargantana#122](https://github.com/bsc-loca/sargantana/issues/122) | [sargantana-hideleg-v0](sargantana-hideleg-v0/) |
+| [sargantana#123](https://github.com/bsc-loca/sargantana/issues/123) | [sargantana-htval-implicit-pte](sargantana-htval-implicit-pte/) |
+| [sargantana#124](https://github.com/bsc-loca/sargantana/issues/124) | [sargantana-vs-perm-vs-gpf](sargantana-vs-perm-vs-gpf/) |

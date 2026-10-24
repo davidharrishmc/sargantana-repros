@@ -1,6 +1,6 @@
 # VS-stage leaf permission fault is reported as a guest-page fault when the leaf's GPA is unmapped in the G-stage
 
-Reproducer for bsc-loca/sargantana#NNN.
+Reproducer for bsc-loca/sargantana#124.
 
 Two-stage translation, Sv39 over Sv39x4. The G-stage maps only GPA 0x8000_0000..0xbfff_ffff. VA 0xc000_n000 are 4 KiB
 VS-stage leaves that deny the access (no W for `sw`, no R for `lw`, no X for `jalr`, A = 0, or U = 1 from VS-mode
