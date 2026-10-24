@@ -1,0 +1,8 @@
+Guest-page faults taken into HS-mode (expected htval = faulting GPA >> 2):
+  VS lw    0x40a45678, level-1 PTE read faults: cause=15 stval=0040a45678 htval=30048c0a htinst=00003000  expected cause=15 htval=30048c0a
+  VS sw    0x40a45678, level-1 PTE read faults: cause=17 stval=0040a45678 htval=30048c0a htinst=00003000  expected cause=17 htval=30048c0a
+  VS jalr  0x40a45678, level-1 PTE read faults: cause=14 stval=0040a45678 htval=30048c0a htinst=00003000  expected cause=14 htval=30048c0a
+  HS hlv.w 0x40a45678, level-1 PTE read faults: cause=15 stval=0040a45678 htval=30048c0a htinst=00003000  expected cause=15 htval=30048c0a
+  VS lw    0x00a45678, level-0 PTE read faults: cause=15 stval=0000a45678 htval=3011588a htinst=00003000  expected cause=15 htval=3011588a
+  VS lw    0xc0045678, final access faults:     cause=15 stval=00c0045678 htval=5001159e htinst=00000000  expected cause=15 htval=5001159e
+spike exit code 0

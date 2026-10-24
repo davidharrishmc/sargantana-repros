@@ -1,0 +1,12 @@
+VS-mode access denied by a 4 KiB VS-stage leaf (expected: page fault into VS-mode, tval = VA):
+  sw   0xc0001000, leaf RX,     GPA unmapped: taken in HS cause=17 tval=00c0001000  expected VS cause=0f   <-- wrong
+  lw   0xc0002000, leaf X,      GPA unmapped: taken in HS cause=15 tval=00c0002000  expected VS cause=0d   <-- wrong
+  jalr 0xc0003000, leaf RW,     GPA unmapped: taken in HS cause=14 tval=00c0003000  expected VS cause=0c   <-- wrong
+  lw   0xc0004000, leaf A = 0,  GPA unmapped: taken in HS cause=15 tval=00c0004000  expected VS cause=0d   <-- wrong
+  lw   0xc0005000, leaf U = 1,  GPA unmapped: taken in HS cause=15 tval=00c0005000  expected VS cause=0d   <-- wrong
+  lw   0xc0006000, leaf W only, GPA unmapped: taken in VS cause=0d tval=00c0006000  expected VS cause=0d
+  sw   0xc0007000, leaf RX,     GPA mapped:   taken in VS cause=0f tval=00c0007000  expected VS cause=0f
+Simulation ended with error code     5
+[232303] %Error: l2_behav.sv:464: Assertion failed in TOP.sim_top.l2_inst.unnamedblk2
+%Error: core_tile/simulator/models/./hdl/l2_behav.sv:464: Verilog $stop
+Aborting...
