@@ -1,4 +1,4 @@
-# VS-stage leaf permission fault is reported as a guest-page fault when the leaf's GPA is unmapped in the G-stage
+# VS-stage permission fault is reported as a guest-page fault when the G-stage does not map the page
 
 Reproducer for bsc-loca/sargantana#124.
 
