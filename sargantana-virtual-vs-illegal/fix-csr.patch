@@ -1,0 +1,55 @@
+--- a/rtl/csr_bsc.sv
++++ b/rtl/csr_bsc.sv
+@@ -285,6 +285,7 @@
+     logic        read_access_exception, update_access_exception, update_access_exception_vs, privilege_violation;
+     logic        virtual_read_access_exception, virtual_update_access_exception, virtual_privilege_violation;
+     logic        csr_we, csr_read;
++    logic        csr_probe;
+     logic        csr_xcpt;          // Internal csr exception bit.
+     logic [63:0] csr_xcpt_cause;    // cause of the internal csr exception
+     logic [63:0] ex_tval, ex_tval2;
+@@ -369,6 +370,9 @@
+     assign insn_hfence_vvma = (def_pkg::RVH && (6'b010001 == rw_addr_i[10:5]) && system_insn && priv_sufficient) ? 1'b1 : 1'b0;
+     assign insn_hfence_gvma = (def_pkg::RVH && (6'b110001 == rw_addr_i[10:5]) && system_insn && priv_sufficient) ? 1'b1 : 1'b0;
+     assign insn_wfi = ((10'b0100000101 == rw_addr_i[9:0]) && system_insn && priv_sufficient) ? 1'b1 : 1'b0;
++    // run the read decode on a virtual-instruction CSR access too, so that an access to a CSR that does not exist
++    // (not HS-qualified) raises illegal instruction
++    assign csr_probe = def_pkg::RVH && virtual_privilege_violation && (rw_cmd_i inside {4'b0001, 4'b0010, 4'b0011, 4'b0101, 4'b1000});
+ 
+     //////////////////////////////////////////////
+     // Vector Instructions Decode
+@@ -410,7 +414,7 @@
+         csr_rdata = 64'b0;
+         perf_addr_dist = '0;
+ 
+-        if (csr_read) begin
++        if (csr_read || csr_probe) begin
+             unique case (conv_csr_addr.address)
+                 riscv_pkg::CSR_FFLAGS: begin
+                     if ((mstatus_q.fs == riscv_pkg::Off) || (def_pkg::RVH && v_mode_q && (vsstatus_q.fs == riscv_pkg::Off))) begin
+@@ -2526,9 +2530,15 @@
+                 end
+                 default:;
+             endcase
++            // a write to a read-only CSR is illegal in every mode, so it is not HS-qualified
++            if ((csr_addr.address[11:10] == 2'b11) && (rw_cmd_i inside {4'b0001, 4'b0010, 4'b0011, 4'b1000})) begin
++              virtual_privilege_violation = 1'b0;
++              privilege_violation = 1'b1;
++            end
+           end
+           //checks the level of the system instruction or sfence with tvm = 1 or sret and tsr = 1
+-          if ((system_insn && !priv_sufficient && !v_mode_q) || 
++          // M-mode system instructions (mret) are not HS-qualified, so they are illegal in VS-mode and VU-mode too
++          if ((system_insn && !priv_sufficient && (!v_mode_q || (rw_addr_i[9:8] == riscv_pkg::PRIV_LVL_M))) || 
+               ((insn_sfence_vm && (priv_lvl_q == riscv_pkg::PRIV_LVL_S)) && (mstatus_q.tvm == 1'b1)) || 
+               ((insn_hfence_gvma && (!v_mode_q && (priv_lvl_q == riscv_pkg::PRIV_LVL_S))) && (mstatus_q.tvm == 1'b1)) || 
+               ((insn_sret && ((priv_lvl_q == riscv_pkg::PRIV_LVL_S) && !v_mode_q)) && (mstatus_q.tsr == 1'b1))) begin
+@@ -2737,7 +2747,7 @@
+           csr_xcpt = 1'b1;
+       end
+         
+-        if (def_pkg::RVH && (virtual_update_access_exception || update_access_exception_vs || virtual_read_access_exception || virtual_privilege_violation)) begin
++        if (def_pkg::RVH && !read_access_exception && (virtual_update_access_exception || update_access_exception_vs || virtual_read_access_exception || virtual_privilege_violation)) begin
+           csr_xcpt_cause = riscv_pkg::VIRTUAL_INSTRUCTION;
+           csr_xcpt = 1'b1;
+         end

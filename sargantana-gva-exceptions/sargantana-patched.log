@@ -1,0 +1,8 @@
+Exceptions from VS-mode trapped in M-mode; mcause in hex and mstatus.GVA:
+  ebreak                mcause=03 GVA=1   expected mcause=03 GVA=1
+  jal to pc+6           mcause=00 GVA=1   expected mcause=00 GVA=1
+  hlv.w (virtual)       mcause=16 GVA=0   expected mcause=16 GVA=0
+  jalr to pc+2 (ctrl)   mcause=00 GVA=1   expected mcause=00 GVA=1
+  ecall (ctrl)          mcause=0a GVA=0   expected mcause=0a GVA=0
+[1;32mRun finished correctly[0m
+- core_tile/simulator/models/./hdl/l2_behav.sv:455: Verilog $finish

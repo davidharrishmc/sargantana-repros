@@ -1,0 +1,11 @@
+--- a/rtl/csr_bsc.sv
++++ b/rtl/csr_bsc.sv
+@@ -2529,7 +2529,7 @@
+           end
+           //checks the level of the system instruction or sfence with tvm = 1 or sret and tsr = 1
+           if ((system_insn && !priv_sufficient && !v_mode_q) || 
+-              ((insn_sfence_vm && (priv_lvl_q == riscv_pkg::PRIV_LVL_S)) && (mstatus_q.tvm == 1'b1)) || 
++              ((insn_sfence_vm && (!v_mode_q && (priv_lvl_q == riscv_pkg::PRIV_LVL_S))) && (mstatus_q.tvm == 1'b1)) || 
+               ((insn_hfence_gvma && (!v_mode_q && (priv_lvl_q == riscv_pkg::PRIV_LVL_S))) && (mstatus_q.tvm == 1'b1)) || 
+               ((insn_sret && ((priv_lvl_q == riscv_pkg::PRIV_LVL_S) && !v_mode_q)) && (mstatus_q.tsr == 1'b1))) begin
+               privilege_violation = 1'b1;

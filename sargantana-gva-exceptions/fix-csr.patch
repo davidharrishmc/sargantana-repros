@@ -1,0 +1,21 @@
+--- a/rtl/csr_bsc.sv
++++ b/rtl/csr_bsc.sv
+@@ -2096,7 +2096,8 @@
+                                   } || ex_cause_i[63])) ? '0 : {{32 {1'b0}}, ex_tinst_i};
+                 hstatus_d.spvp = v_mode_q ? priv_lvl_q[0] : hstatus_d.spvp;
+                 htval_d = {{25{1'b0}}, ex_tval2};
+-                hstatus_d.gva = ex_gva_i;
++                // a breakpoint writes the pc to tval, which is a guest virtual address when V = 1
++                hstatus_d.gva = (csr_xcpt && (csr_xcpt_cause == riscv_pkg::BREAKPOINT)) ? v_mode_q : ex_gva_i;
+                 hstatus_d.spv = v_mode_q;
+               end
+             end
+@@ -2142,7 +2143,7 @@
+                                 riscv_pkg::VIRTUAL_INSTRUCTION
+                                 } || ex_cause_i[63])) ? '0 : {{32{1'b0}}, ex_tinst_i};
+               mtval2_d = {{25{1'b0}}, ex_tval2};
+-              mstatus_d.gva = ex_gva_i;
++              mstatus_d.gva = (csr_xcpt && (csr_xcpt_cause == riscv_pkg::BREAKPOINT)) ? v_mode_q : ex_gva_i;
+             end
+           end
+     

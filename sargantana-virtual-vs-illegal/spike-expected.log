@@ -1,0 +1,9 @@
+Guest instructions that HS-mode cannot execute either; mcause in hex (02 illegal, 16 virtual):
+  VU csrr 0x101            mcause=02 GVA=0   expected mcause=02
+  VU csrr 0x901            mcause=02 GVA=0   expected mcause=02
+  VS csrw hgeip            mcause=02 GVA=0   expected mcause=02
+  VS mret                  mcause=02 GVA=0   expected mcause=02
+  VS csrw cycle (hcen=0)   mcause=02 GVA=0   expected mcause=02
+  VS csrr hstatus (ctrl)   mcause=16 GVA=0   expected mcause=16
+  VU csrr sstatus (ctrl)   mcause=16 GVA=0   expected mcause=16
+spike exit code 0

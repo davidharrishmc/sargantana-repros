@@ -1,0 +1,20 @@
+--- a/rtl/datapath/rtl/id_stage/rtl/decoder.sv
++++ b/rtl/datapath/rtl/id_stage/rtl/decoder.sv
+@@ -3603,7 +3603,7 @@
+                 decode_instr_o.ex.origin = jal_id_if_o.jump_addr; // this gives a hint
+                 decode_instr_o.ex.origin2 = 'h0;
+                 decode_instr_o.ex.tinst  = 'h0;
+-                decode_instr_o.ex.gva    = 'h0;
++                decode_instr_o.ex.gva    = v_mode_i; // tval is the guest virtual target
+                 decode_instr_o.instr.ex_valid = 1'b1; 
+             end else if (xcpt_illegal_c_instr_int) begin
+                 decode_instr_o.ex.valid  = 1'b1;
+@@ -3627,7 +3627,7 @@
+                 decode_instr_o.ex.origin = {32'd0, decode_i.inst};
+                 decode_instr_o.ex.origin2 = 'h0;
+                 decode_instr_o.ex.tinst  = 'h0;
+-                decode_instr_o.ex.gva    = v_mode_i;
++                decode_instr_o.ex.gva    = 'h0; // tval is the instruction, not an address
+                 decode_instr_o.instr.ex_valid = 1'b1;
+             end else begin
+                 decode_instr_o.ex.valid  = 'h0;

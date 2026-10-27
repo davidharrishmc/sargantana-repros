@@ -1,0 +1,6 @@
+csrw mtval2, 0x2222 in M-mode with mie = 0:
+  mip & 0x2222 = 0000000000002222   expected 0000000000000000   <-- wrong
+  mtval2       = 0000000000000000   expected 0000000000002222   <-- wrong
+[1;31mSimulation ended with error code     2[0m
+[205411] %Error: l2_behav.sv:464: Assertion failed in TOP.sim_top.l2_inst.unnamedblk2
+%Error: core_tile/simulator/models/./hdl/l2_behav.sv:464: Verilog $stop

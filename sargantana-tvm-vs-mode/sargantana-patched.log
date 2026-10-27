@@ -1,0 +1,7 @@
+SFENCE.VMA and satp with mstatus.TVM and hstatus.VTVM; mcause in hex (0a = completed, 02 illegal, 16 virtual):
+  VS TVM=1 VTVM=0 sfence.vma  mcause=0a GVA=0   expected mcause=0a
+  VS TVM=1 VTVM=0 csrr satp   mcause=0a GVA=0   expected mcause=0a
+  VS TVM=0 VTVM=1 sfence.vma  mcause=16 GVA=0   expected mcause=16
+  HS TVM=1         sfence.vma mcause=02 GVA=0   expected mcause=02
+[1;32mRun finished correctly[0m
+- core_tile/simulator/models/./hdl/l2_behav.sv:455: Verilog $finish

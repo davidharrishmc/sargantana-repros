@@ -1,0 +1,7 @@
+Exceptions from VS-mode trapped in M-mode; mcause in hex and mstatus.GVA:
+  ebreak                mcause=03 GVA=1   expected mcause=03 GVA=1
+  jal to pc+6           mcause=00 GVA=1   expected mcause=00 GVA=1
+  hlv.w (virtual)       mcause=16 GVA=0   expected mcause=16 GVA=0
+  jalr to pc+2 (ctrl)   mcause=00 GVA=1   expected mcause=00 GVA=1
+  ecall (ctrl)          mcause=0a GVA=0   expected mcause=0a GVA=0
+spike exit code 0

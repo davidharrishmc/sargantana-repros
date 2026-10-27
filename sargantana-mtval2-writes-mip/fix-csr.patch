@@ -1,0 +1,13 @@
+--- a/rtl/csr_bsc.sv
++++ b/rtl/csr_bsc.sv
+@@ -1596,7 +1596,9 @@
+                 riscv_pkg::CSR_MTINST:
+                     if (def_pkg::RVH) mtinst_d = {{32{1'b0}}, csr_wdata[31:0]};
+                     else update_access_exception = 1'b1;
+-                riscv_pkg::CSR_MTVAL2,
++                riscv_pkg::CSR_MTVAL2:
++                    if (def_pkg::RVH) mtval2_d = csr_wdata;
++                    else update_access_exception = 1'b1;
+                 riscv_pkg::CSR_MIP: begin
+                   if (def_pkg::RVH) begin
+                     mask = riscv_pkg::MIP_SSIP

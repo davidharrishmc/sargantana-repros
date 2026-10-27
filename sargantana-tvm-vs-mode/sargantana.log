@@ -1,0 +1,8 @@
+SFENCE.VMA and satp with mstatus.TVM and hstatus.VTVM; mcause in hex (0a = completed, 02 illegal, 16 virtual):
+  VS TVM=1 VTVM=0 sfence.vma  mcause=02 GVA=0   expected mcause=0a   <-- wrong
+  VS TVM=1 VTVM=0 csrr satp   mcause=0a GVA=0   expected mcause=0a
+  VS TVM=0 VTVM=1 sfence.vma  mcause=16 GVA=0   expected mcause=16
+  HS TVM=1         sfence.vma mcause=02 GVA=0   expected mcause=02
+[1;31mSimulation ended with error code     1[0m
+[213265] %Error: l2_behav.sv:464: Assertion failed in TOP.sim_top.l2_inst.unnamedblk2
+%Error: core_tile/simulator/models/./hdl/l2_behav.sv:464: Verilog $stop

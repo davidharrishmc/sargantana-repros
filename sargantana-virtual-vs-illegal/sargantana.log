@@ -1,0 +1,11 @@
+Guest instructions that HS-mode cannot execute either; mcause in hex (02 illegal, 16 virtual):
+  VU csrr 0x101            mcause=16 GVA=0   expected mcause=02   <-- wrong
+  VU csrr 0x901            mcause=16 GVA=0   expected mcause=02   <-- wrong
+  VS csrw hgeip            mcause=16 GVA=0   expected mcause=02   <-- wrong
+  VS mret                  mcause=16 GVA=0   expected mcause=02   <-- wrong
+  VS csrw cycle (hcen=0)   mcause=16 GVA=0   expected mcause=02   <-- wrong
+  VS csrr hstatus (ctrl)   mcause=16 GVA=0   expected mcause=16
+  VU csrr sstatus (ctrl)   mcause=16 GVA=0   expected mcause=16
+[1;31mSimulation ended with error code     5[0m
+[217687] %Error: l2_behav.sv:464: Assertion failed in TOP.sim_top.l2_inst.unnamedblk2
+%Error: core_tile/simulator/models/./hdl/l2_behav.sv:464: Verilog $stop

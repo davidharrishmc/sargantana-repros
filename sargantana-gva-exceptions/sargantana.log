@@ -1,0 +1,9 @@
+Exceptions from VS-mode trapped in M-mode; mcause in hex and mstatus.GVA:
+  ebreak                mcause=03 GVA=0   expected mcause=03 GVA=1   <-- wrong
+  jal to pc+6           mcause=00 GVA=0   expected mcause=00 GVA=1   <-- wrong
+  hlv.w (virtual)       mcause=16 GVA=1   expected mcause=16 GVA=0   <-- wrong
+  jalr to pc+2 (ctrl)   mcause=00 GVA=1   expected mcause=00 GVA=1
+  ecall (ctrl)          mcause=0a GVA=0   expected mcause=0a GVA=0
+[1;31mSimulation ended with error code     3[0m
+[213927] %Error: l2_behav.sv:464: Assertion failed in TOP.sim_top.l2_inst.unnamedblk2
+%Error: core_tile/simulator/models/./hdl/l2_behav.sv:464: Verilog $stop
