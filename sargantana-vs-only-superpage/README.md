@@ -1,6 +1,6 @@
 # With hgatp = Bare, a VS-stage superpage translates every address to the superpage's first 4 KiB page
 
-Reproducer for NEW-02.
+Reproducer for [sargantana#136](https://github.com/bsc-loca/sargantana/issues/136).
 
 hgatp = Bare, vsatp = Sv39. VS-mode loads of `marker` through a 1 GiB and a 2 MiB VS-stage leaf on PA 0x8000_0000, and through a 4 KiB leaf (control). The loaded word is printed as `a1`.
 

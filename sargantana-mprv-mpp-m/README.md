@@ -1,6 +1,6 @@
 # With mstatus.MPRV = 1 and MPP = M, loads and stores are still translated by the G stage when MPV = 1
 
-Reproducer for NEW-07.
+Reproducer for [csr#17](https://github.com/bsc-loca/csr/issues/17).
 
 vsatp = Bare, hgatp = Sv39x4 with an empty table. M-mode `lw`/`sw` with MPRV = 1 and MPP/MPV = M/1, M/0 and S/1.
 

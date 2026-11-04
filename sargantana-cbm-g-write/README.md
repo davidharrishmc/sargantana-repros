@@ -1,6 +1,6 @@
 # cbo.clean, cbo.flush and cbo.inval require G-stage write permission and D = 1
 
-Reproducer for NEW-08.
+Reproducer for [sargantana#140](https://github.com/bsc-loca/sargantana/issues/140).
 
 Two-stage translation; VS-mode cache-block operations on a page the G stage maps read-only, or read-write with D = 0. cbo.zero is the control. menvcfg and henvcfg enable all three CBO groups.
 

@@ -1,6 +1,6 @@
 # The G-stage leaf for a VS-level page table is not checked for read permission or A
 
-Reproducer for NEW-09.
+Reproducer for [sargantana#141](https://github.com/bsc-loca/sargantana/issues/141).
 
 Two-stage translation with 4 KiB leaves; VS-mode loads whose VS-level leaf PTE lies on a page the G stage maps execute-only, or with A = 0.
 

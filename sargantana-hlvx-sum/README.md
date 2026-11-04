@@ -1,6 +1,6 @@
 # HLVX with hstatus.SPVP = 1 ignores vsstatus.SUM on a U = 1 page
 
-Reproducer for NEW-06.
+Reproducer for [sargantana#139](https://github.com/bsc-loca/sargantana/issues/139).
 
 Two-stage translation; HS-mode `hlvx.wu`/`hlv.w` with hstatus.SPVP = 0 or 1 and vsstatus.SUM = 0 or 1 on VS-stage leaves with U = 1 (execute-only, and read-only).
 

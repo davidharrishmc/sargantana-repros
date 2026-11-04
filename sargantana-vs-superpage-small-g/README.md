@@ -1,6 +1,6 @@
 # A VS-stage superpage over a smaller G-stage page is translated through the superpage's base guest physical address
 
-Reproducer for NEW-05.
+Reproducer for [sargantana#138](https://github.com/bsc-loca/sargantana/issues/138).
 
 Two-stage translation; VS-stage 1 GiB and 2 MiB leaves whose accessed guest physical address is mapped by a smaller G-stage leaf, and one whose base guest physical address is G-mapped but the accessed one is not.
 

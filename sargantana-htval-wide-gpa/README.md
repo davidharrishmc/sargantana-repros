@@ -1,6 +1,6 @@
 # mtval2/htval drop guest-physical-address bits above bit 41
 
-Reproducer for NEW-10.
+Reproducer for [sargantana#142](https://github.com/bsc-loca/sargantana/issues/142).
 
 Two-stage translation; VS-mode `lw`, `sw` and `jalr` to VS-stage leaves whose guest physical address has bit 55 set, and bit 41 set (control).
 

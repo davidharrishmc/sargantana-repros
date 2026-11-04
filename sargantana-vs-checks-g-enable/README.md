@@ -1,6 +1,6 @@
 # VS-stage page-fault checks follow the G-stage enable: skipped when hgatp = Bare, applied when vsatp = Bare
 
-Reproducer for NEW-03.
+Reproducer for [sargantana#137](https://github.com/bsc-loca/sargantana/issues/137).
 
 Part 1, hgatp = Bare, vsatp = Sv39: VS-mode accesses through VS-stage leaves that deny them must page-fault. Part 2, vsatp = Bare, hgatp = Sv39x4: user-level loads (VU-mode, HLV with SPVP = 0, M-mode MPRV with MPP = U, MPV = 1) of a G-stage U page must succeed.
 
