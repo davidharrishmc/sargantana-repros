@@ -1,0 +1,9 @@
+VS-mode cache-block operations; the G stage maps the page read-only (c_*) or read-write with D = 0 (*_d):
+                                        cause G mtval2         mtinst   a1          expected
+  cbo.clean 0xc0001000, G read-only    0a 0 00000000000000 00000000 ffffffff   expected 0a - -------------- --------
+  cbo.flush 0xc0001000, G read-only    0a 0 00000000000000 00000000 ffffffff   expected 0a - -------------- --------
+  cbo.inval 0xc0001000, G read-only    0a 0 00000000000000 00000000 ffffffff   expected 0a - -------------- --------
+  cbo.zero  0xc0001000, G read-only (ctrl)17 1 00000050000400 00000000 ffffffff   expected 17 1 00000050000400 --------
+  cbo.clean 0xc0002000, G RW, D = 0    0a 0 00000000000000 00000000 ffffffff   expected 0a - -------------- --------
+  cbo.zero  0xc0002000, G RW, D = 0 (ctrl)17 1 00000050000800 00000000 ffffffff   expected 17 1 00000050000800 --------
+spike exit code 0

@@ -1,0 +1,20 @@
+diff --git a/rtl/datapath/rtl/exe_stage/rtl/load_store_queue.sv b/rtl/datapath/rtl/exe_stage/rtl/load_store_queue.sv
+--- a/rtl/datapath/rtl/exe_stage/rtl/load_store_queue.sv
++++ b/rtl/datapath/rtl/exe_stage/rtl/load_store_queue.sv
+@@ -164,14 +164,14 @@ always_comb begin
+         translated_instr.ex.origin      = instr_to_translate.data_rs1;
+         translated_instr.ex.origin2 = '0;
+         translated_instr.ex.tinst   = '0;
+-        translated_instr.ex.gva         = '0;
++        translated_instr.ex.gva         = ld_st_v_mode_i;
+         translated_instr.ex.valid       = 1'b1;
+     end else if ((~is_hlvx_inst && dtlb_comm_i.resp.xcpt.load) || (is_hlvx_inst && dtlb_comm_i.resp.xcpt.fetch)) begin // Page fault load
+         translated_instr.ex.cause       = instr_to_translate.is_cmo ? ST_AMO_PAGE_FAULT : LD_PAGE_FAULT;
+         translated_instr.ex.origin      = instr_to_translate.data_rs1;
+         translated_instr.ex.origin2 = '0;
+         translated_instr.ex.tinst   = '0;
+-        translated_instr.ex.gva         = '0;
++        translated_instr.ex.gva         = ld_st_v_mode_i;
+         translated_instr.ex.valid       = 1'b1;
+                                                       // Translation is a G-stage: Address bits 63:41 must all be zeros, or else a guest-page-fault exception occurs:
+     end else if ((dtlb_comm_i.resp.guest_xcpt.store | ((en_ld_st_g_translation_i & ~en_ld_st_translation_i) & (|instr_to_translate.data_rs1[63:PHY_VIRT_MAX_ADDR_SIZE-1]))) 

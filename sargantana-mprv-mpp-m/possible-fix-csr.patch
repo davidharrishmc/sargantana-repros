@@ -1,0 +1,30 @@
+diff --git a/rtl/csr_bsc.sv b/rtl/csr_bsc.sv
+--- a/rtl/csr_bsc.sv
++++ b/rtl/csr_bsc.sv
+@@ -2224,7 +2224,7 @@ module csr_bsc#(
+         if(def_pkg::RVH) begin
+           if (mprv && (mstatus_q.mpv == 1'b0) && (satp_q.mode == def_pkg::MODE_SV39) && (mstatus_q.mpp != riscv_pkg::PRIV_LVL_M) && ((~debug_mode_en_q) || dcsr_q.mprven)) begin
+               en_ld_st_translation_d = 1'b1;
+-          end else if(mprv && (mstatus_q.mpv == 1'b1)) begin
++          end else if(mprv && (mstatus_q.mpv == 1'b1) && (mstatus_q.mpp != riscv_pkg::PRIV_LVL_M)) begin
+             if (vsatp_q.mode == def_pkg::MODE_SV39) begin
+               en_ld_st_translation_d = 1'b1;
+             end else begin
+@@ -2234,7 +2234,7 @@ module csr_bsc#(
+               en_ld_st_translation_d = en_translation_o;
+           end
+ 
+-          if (mprv && (mstatus_q.mpv == 1'b1)) begin
++          if (mprv && (mstatus_q.mpv == 1'b1) && (mstatus_q.mpp != riscv_pkg::PRIV_LVL_M)) begin
+             if (hgatp_q.mode == def_pkg::MODE_SV39) begin
+               en_ld_st_g_translation_d = 1'b1;
+             end else begin
+@@ -2246,7 +2246,7 @@ module csr_bsc#(
+               
+           if (csr_hs_ld_st_inst_i) ld_st_priv_lvl_o = riscv_pkg::priv_lvl_t'({1'b0, hstatus_q.spvp});
+           else ld_st_priv_lvl_o = (mprv &&  ((~debug_mode_en_q) || dcsr_q.mprven)) ? mstatus_q.mpp : priv_lvl_o;
+-          ld_st_v_mode_o = ((mprv ? mstatus_q.mpv : v_mode_q) || (csr_hs_ld_st_inst_i));
++          ld_st_v_mode_o = ((mprv ? (mstatus_q.mpv && (mstatus_q.mpp != riscv_pkg::PRIV_LVL_M)) : v_mode_q) || (csr_hs_ld_st_inst_i));
+           en_ld_st_translation_o = (en_ld_st_translation_q && !csr_hs_ld_st_inst_i) || ((vsatp_q.mode == def_pkg::MODE_SV39) && csr_hs_ld_st_inst_i);
+           en_ld_st_g_translation_o = (en_ld_st_g_translation_q && !csr_hs_ld_st_inst_i) || (csr_hs_ld_st_inst_i && (hgatp_q.mode == def_pkg::MODE_SV39) && csr_hs_ld_st_inst_i);
+         end else begin

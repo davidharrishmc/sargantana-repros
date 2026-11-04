@@ -1,0 +1,12 @@
+diff --git a/rtl/tlb/tlb.sv b/rtl/tlb/tlb.sv
+--- a/rtl/tlb/tlb.sv
++++ b/rtl/tlb/tlb.sv
+@@ -472,7 +472,7 @@ end
+ assign exec_ok = (sv_priv_lvl & ~is_virtualized_env) ? tlb_entries[hit_idx].perms.sx : tlb_entries[hit_idx].perms.ux;
+ 
+ // Virtual execution permission
+-assign virt_exec_ok = (sv_priv_lvl) ? tlb_entries[hit_idx].virt_perms.sx : tlb_entries[hit_idx].virt_perms.ux;
++assign virt_exec_ok = (sv_priv_lvl) ? (tlb_entries[hit_idx].virt_perms.sx | (~cache_tlb_comm_i.req.instruction & ptw_tlb_comm_i.ptw_vsstatus.sum & tlb_entries[hit_idx].virt_perms.ux)) : tlb_entries[hit_idx].virt_perms.ux;
+ 
+ logic xcpt_if, xcpt_st, xcpt_ld;
+ assign xcpt_if = (vm_enable && 

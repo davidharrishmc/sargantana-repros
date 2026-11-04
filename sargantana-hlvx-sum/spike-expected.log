@@ -1,0 +1,8 @@
+HS-mode HLVX.WU / HLV.W on VS-stage pages with U = 1 (a1 = loaded word):
+                                        cause G mtval2         mtinst   a1          expected
+  hlvx.wu, leaf UX, SPVP=1, SUM=1      09 0 00000000000000 00000000 5a5a1234   expected 09 - -------------- 5a5a1234
+  hlvx.wu, leaf UX, SPVP=1, SUM=0      0d 1 00000000000000 00000000 ffffffff   expected 0d - -------------- --------
+  hlvx.wu, leaf UX, SPVP=0 (ctrl)      09 0 00000000000000 00000000 5a5a1234   expected 09 - -------------- 5a5a1234
+  hlv.w,   leaf UR, SPVP=1, SUM=1 (ctrl)09 0 00000000000000 00000000 5a5a1234   expected 09 - -------------- 5a5a1234
+  hlvx.wu, leaf UR, SPVP=1, SUM=1 (ctrl)0d 1 00000000000000 00000000 ffffffff   expected 0d - -------------- --------
+spike exit code 0

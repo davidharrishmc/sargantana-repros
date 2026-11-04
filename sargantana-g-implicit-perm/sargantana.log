@@ -1,0 +1,8 @@
+VS-mode loads whose VS-level leaf PTE lies on a page the G stage maps execute-only or with A = 0:
+                                        cause G mtval2         mtinst   a1          expected
+  lw 0xc0001234, PTE page G: U X       0a 0 00000000000000 00000000 5a5a1234   expected 15 1 -------------- --------   <-- wrong
+  lw 0x100001234, PTE page G: A = 0    0a 0 00000000000000 00000000 5a5a1234   expected 15 1 -------------- --------   <-- wrong
+  lw marker (ctrl)                     0a 0 00000000000000 00000000 5a5a1234   expected 0a - -------------- 5a5a1234
+Simulation ended with error code     2
+[115807] %Error: l2_behav.sv:464: Assertion failed in TOP.sim_top.l2_inst.unnamedblk2
+%Error: simulator/models/./hdl/l2_behav.sv:464: Verilog $stop

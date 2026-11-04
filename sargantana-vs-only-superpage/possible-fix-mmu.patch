@@ -1,0 +1,15 @@
+diff --git a/rtl/tlb/tlb.sv b/rtl/tlb/tlb.sv
+--- a/rtl/tlb/tlb.sv
++++ b/rtl/tlb/tlb.sv
+@@ -515,9 +515,9 @@ assign guest_ppn = tlb_entries[hit_idx].g_enable ?
+     {{(PPN_SIZE-VPN_SIZE-1){1'b0}}, cache_vpn[VPN_SIZE:0] & {(VPN_SIZE+1){~(vm_enable & ~passthrough)}}}))) : '0;
+ 
+ assign ppn_k = tlb_entries[hit_idx].ppn;
+-assign ppn_m = (tlb_entries[hit_idx].vs_enable || tlb_entries[hit_idx].g_enable) ? {tlb_entries[hit_idx].ppn >> PAGE_LVL_BITS, guest_ppn[PAGE_LVL_BITS-1:0]}
++assign ppn_m = (tlb_entries[hit_idx].g_enable) ? {tlb_entries[hit_idx].ppn >> PAGE_LVL_BITS, guest_ppn[PAGE_LVL_BITS-1:0]}
+                                   : {tlb_entries[hit_idx].ppn >> PAGE_LVL_BITS, cache_vpn[PAGE_LVL_BITS-1:0]};
+-assign ppn_g = (tlb_entries[hit_idx].vs_enable || tlb_entries[hit_idx].g_enable) ? {tlb_entries[hit_idx].ppn >> (PAGE_LVL_BITS * 2), guest_ppn[PAGE_LVL_BITS*2-1:0]}
++assign ppn_g = (tlb_entries[hit_idx].g_enable) ? {tlb_entries[hit_idx].ppn >> (PAGE_LVL_BITS * 2), guest_ppn[PAGE_LVL_BITS*2-1:0]}
+                                   : {tlb_entries[hit_idx].ppn >> (PAGE_LVL_BITS * 2), cache_vpn[PAGE_LVL_BITS*2-1:0]};
+ assign resp_ppn =
+         ((ppn_k & {PPN_SIZE{hit_k & vm_enable & ~passthrough}}) | (ppn_m & {PPN_SIZE{hit_m & vm_enable & ~passthrough}})) |

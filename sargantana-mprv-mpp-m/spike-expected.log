@@ -1,0 +1,7 @@
+M-mode accesses to `marker` with MPRV = 1 (vsatp = Bare, hgatp = Sv39x4 with nothing mapped):
+                                        cause G mtval2         mtinst   a1          expected
+  lw, MPP = M, MPV = 1                 0b 0 00000000000000 00000000 5a5a1234   expected 0b - -------------- 5a5a1234
+  sw, MPP = M, MPV = 1                 0b 0 00000000000000 00000000 ffffffff   expected 0b - -------------- --------
+  lw, MPP = M, MPV = 0 (ctrl)          0b 0 00000000000000 00000000 5a5a1234   expected 0b - -------------- 5a5a1234
+  lw, MPP = S, MPV = 1 (ctrl)          15 1 00000020003000 00000000 ffffffff   expected 15 1 -------------- --------
+spike exit code 0

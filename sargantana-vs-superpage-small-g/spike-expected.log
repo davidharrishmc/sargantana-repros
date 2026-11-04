@@ -1,0 +1,7 @@
+VS-mode loads through a VS-stage superpage over a smaller G-stage leaf (Sv39 over Sv39x4):
+                                        cause G mtval2         mtinst   a1          expected
+  VS 1 GiB over G 2 MiB                 0a 0 00000000000000 00000000 5a5a1234   expected 0a - -------------- 5a5a1234
+  VS 2 MiB over G 4 KiB                 0a 0 00000000000000 00000000 5a5a1234   expected 0a - -------------- 5a5a1234
+  VS 1 GiB, only base 2 MiB G-mapped    15 1 0000007008488d 00000000 ffffffff   expected 15 1 -------------- --------
+  VS 1 GiB over G 1 GiB (ctrl)          0a 0 00000000000000 00000000 5a5a1234   expected 0a - -------------- 5a5a1234
+spike exit code 0

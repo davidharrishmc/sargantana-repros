@@ -1,0 +1,9 @@
+VS-mode accesses whose guest physical address has bit 55 or bit 41 set (guest-page fault):
+                                        cause G mtval2         mtinst   a1          expected
+  lw   GPA (1<<55)+0x80001008          15 1 00000020000402 00000000 ffffffff   expected 15 1 20000020000402 --------   <-- wrong
+  sw   GPA (1<<55)+0x80001008          17 1 00000020000402 00000000 ffffffff   expected 17 1 20000020000402 --------   <-- wrong
+  jalr GPA (1<<55)+0x80001008          14 1 00000020000402 00000000 ffffffff   expected 14 1 20000020000402 --------   <-- wrong
+  lw   GPA (1<<41)+0x80002008 (ctrl)   15 1 00008020000802 00000000 ffffffff   expected 15 1 00008020000802 --------
+Simulation ended with error code     3
+[130287] %Error: l2_behav.sv:464: Assertion failed in TOP.sim_top.l2_inst.unnamedblk2
+%Error: simulator/models/./hdl/l2_behav.sv:464: Verilog $stop

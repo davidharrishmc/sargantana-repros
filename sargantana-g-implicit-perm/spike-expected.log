@@ -1,0 +1,6 @@
+VS-mode loads whose VS-level leaf PTE lies on a page the G stage maps execute-only or with A = 0:
+                                        cause G mtval2         mtinst   a1          expected
+  lw 0xc0001234, PTE page G: U X       15 1 00000020004002 00003000 ffffffff   expected 15 1 -------------- --------
+  lw 0x100001234, PTE page G: A = 0    15 1 00000020004802 00003000 ffffffff   expected 15 1 -------------- --------
+  lw marker (ctrl)                     0a 0 00000000000000 00000000 5a5a1234   expected 0a - -------------- 5a5a1234
+spike exit code 0

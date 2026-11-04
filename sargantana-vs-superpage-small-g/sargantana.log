@@ -1,0 +1,9 @@
+VS-mode loads through a VS-stage superpage over a smaller G-stage leaf (Sv39 over Sv39x4):
+                                        cause G mtval2         mtinst   a1          expected
+  VS 1 GiB over G 2 MiB                 15 1 0000005008488d 00000000 ffffffff   expected 0a - -------------- 5a5a1234   <-- wrong
+  VS 2 MiB over G 4 KiB                 15 1 0000006000048d 00000000 ffffffff   expected 0a - -------------- 5a5a1234   <-- wrong
+  VS 1 GiB, only base 2 MiB G-mapped    0a 0 00000000000000 00000000 5a5a1234   expected 15 1 -------------- --------   <-- wrong
+  VS 1 GiB over G 1 GiB (ctrl)          0a 0 00000000000000 00000000 5a5a1234   expected 0a - -------------- 5a5a1234
+Simulation ended with error code     3
+[130739] %Error: l2_behav.sv:464: Assertion failed in TOP.sim_top.l2_inst.unnamedblk2
+%Error: simulator/models/./hdl/l2_behav.sv:464: Verilog $stop

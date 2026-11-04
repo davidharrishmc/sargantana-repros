@@ -1,0 +1,13 @@
+Part 1, hgatp = Bare, vsatp = Sv39; VS-mode accesses through 4 KiB VS-stage leaves:
+                                        cause G mtval2         mtinst   a1          expected
+  VS sw 0xc0001000, leaf R only        0f 1 00000000000000 00000000 ffffffff   expected 0f - -------------- --------
+  VS lw 0xc0002000, leaf X only        0d 1 00000000000000 00000000 ffffffff   expected 0d - -------------- --------
+  VS lw 0xc0003000, leaf V = 0         0d 1 00000000000000 00000000 ffffffff   expected 0d - -------------- --------
+  VS lw 0xc0004000, leaf U = 1, SUM=0  0d 1 00000000000000 00000000 ffffffff   expected 0d - -------------- --------
+  VS lw 0xc0005000, leaf RW (ctrl)     0a 0 00000000000000 00000000 00000000   expected 0a - -------------- 00000000
+Part 2, vsatp = Bare, hgatp = Sv39x4 (U = 1, RWX); user-level loads of `marker`:
+  VU lw marker                         08 0 00000000000000 00000000 5a5a1234   expected 08 - -------------- 5a5a1234
+  HS hlv.w marker, SPVP = 0            09 0 00000000000000 00000000 5a5a1234   expected 09 - -------------- 5a5a1234
+  M lw marker, MPRV=1 MPP=U MPV=1      0b 0 00000000000000 00000000 5a5a1234   expected 0b - -------------- 5a5a1234
+  VS lw marker (ctrl)                  0a 0 00000000000000 00000000 5a5a1234   expected 0a - -------------- 5a5a1234
+spike exit code 0

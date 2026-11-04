@@ -1,0 +1,11 @@
+Traps from VS-stage translation, taken in M-mode (cause, mstatus.GVA, mtval2, mtinst, a1; all hex):
+                                        cause G mtval2         mtinst   a1          expected
+  VS lw    0xc0001000, leaf X only     0d 0 00000000000000 00000000 ffffffff   expected 0d 1 00000000000000 --------   <-- wrong
+  VS sw    0xc0002000, leaf R only     0f 0 00000000000000 00000000 ffffffff   expected 0f 1 00000000000000 --------   <-- wrong
+  HS hlv.w 0xc0001000, leaf X only     0d 0 00000000000000 00000000 ffffffff   expected 0d 1 00000000000000 --------   <-- wrong
+  HS hsv.w 0xc0002000, leaf R only     0f 0 00000000000000 00000000 ffffffff   expected 0f 1 00000000000000 --------   <-- wrong
+  VS jalr  0xc0003000, leaf RW (ctrl)  0c 1 00000000000000 00000000 ffffffff   expected 0c 1 00000000000000 --------
+  VS lw    0xc0004000, GPA unmapped (ctrl) 15 1 00000050000000 00000000 ffffffff   expected 15 1 00000050000000 --------
+Simulation ended with error code     4
+[182717] %Error: l2_behav.sv:464: Assertion failed in TOP.sim_top.l2_inst.unnamedblk2
+%Error: simulator/models/./hdl/l2_behav.sv:464: Verilog $stop

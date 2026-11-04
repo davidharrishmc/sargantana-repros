@@ -1,0 +1,15 @@
+Part 1, hgatp = Bare, vsatp = Sv39; VS-mode accesses through 4 KiB VS-stage leaves:
+                                        cause G mtval2         mtinst   a1          expected
+  VS sw 0xc0001000, leaf R only        0a 0 00000000000000 00000000 ffffffff   expected 0f - -------------- --------   <-- wrong
+  VS lw 0xc0002000, leaf X only        0a 0 00000000000000 00000000 00000000   expected 0d - -------------- --------   <-- wrong
+  VS lw 0xc0003000, leaf V = 0         0a 0 00000000000000 00000000 00000000   expected 0d - -------------- --------   <-- wrong
+  VS lw 0xc0004000, leaf U = 1, SUM=0  0a 0 00000000000000 00000000 00000000   expected 0d - -------------- --------   <-- wrong
+  VS lw 0xc0005000, leaf RW (ctrl)     0a 0 00000000000000 00000000 00000000   expected 0a - -------------- 00000000
+Part 2, vsatp = Bare, hgatp = Sv39x4 (U = 1, RWX); user-level loads of `marker`:
+  VU lw marker                         0c 1 00000000000000 00000000 ffffffff   expected 08 - -------------- 5a5a1234   <-- wrong
+  HS hlv.w marker, SPVP = 0            0d 0 00000000000000 00000000 ffffffff   expected 09 - -------------- 5a5a1234   <-- wrong
+  M lw marker, MPRV=1 MPP=U MPV=1      0d 0 00000000000000 00000000 ffffffff   expected 0b - -------------- 5a5a1234   <-- wrong
+  VS lw marker (ctrl)                  0a 0 00000000000000 00000000 5a5a1234   expected 0a - -------------- 5a5a1234
+Simulation ended with error code     7
+[267061] %Error: l2_behav.sv:464: Assertion failed in TOP.sim_top.l2_inst.unnamedblk2
+%Error: simulator/models/./hdl/l2_behav.sv:464: Verilog $stop

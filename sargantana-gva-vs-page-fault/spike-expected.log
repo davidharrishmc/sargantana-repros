@@ -1,0 +1,9 @@
+Traps from VS-stage translation, taken in M-mode (cause, mstatus.GVA, mtval2, mtinst, a1; all hex):
+                                        cause G mtval2         mtinst   a1          expected
+  VS lw    0xc0001000, leaf X only     0d 1 00000000000000 00000000 ffffffff   expected 0d 1 00000000000000 --------
+  VS sw    0xc0002000, leaf R only     0f 1 00000000000000 00000000 ffffffff   expected 0f 1 00000000000000 --------
+  HS hlv.w 0xc0001000, leaf X only     0d 1 00000000000000 00000000 ffffffff   expected 0d 1 00000000000000 --------
+  HS hsv.w 0xc0002000, leaf R only     0f 1 00000000000000 00000000 ffffffff   expected 0f 1 00000000000000 --------
+  VS jalr  0xc0003000, leaf RW (ctrl)  0c 1 00000000000000 00000000 ffffffff   expected 0c 1 00000000000000 --------
+  VS lw    0xc0004000, GPA unmapped (ctrl) 15 1 00000050000000 00000000 ffffffff   expected 15 1 00000050000000 --------
+spike exit code 0

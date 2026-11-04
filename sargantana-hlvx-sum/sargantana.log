@@ -1,0 +1,10 @@
+HS-mode HLVX.WU / HLV.W on VS-stage pages with U = 1 (a1 = loaded word):
+                                        cause G mtval2         mtinst   a1          expected
+  hlvx.wu, leaf UX, SPVP=1, SUM=1      0d 0 00000000000000 00000000 ffffffff   expected 09 - -------------- 5a5a1234   <-- wrong
+  hlvx.wu, leaf UX, SPVP=1, SUM=0      0d 0 00000000000000 00000000 ffffffff   expected 0d - -------------- --------
+  hlvx.wu, leaf UX, SPVP=0 (ctrl)      09 0 00000000000000 00000000 5a5a1234   expected 09 - -------------- 5a5a1234
+  hlv.w,   leaf UR, SPVP=1, SUM=1 (ctrl)09 0 00000000000000 00000000 5a5a1234   expected 09 - -------------- 5a5a1234
+  hlvx.wu, leaf UR, SPVP=1, SUM=1 (ctrl)0d 0 00000000000000 00000000 ffffffff   expected 0d - -------------- --------
+Simulation ended with error code     1
+[155093] %Error: l2_behav.sv:464: Assertion failed in TOP.sim_top.l2_inst.unnamedblk2
+%Error: simulator/models/./hdl/l2_behav.sv:464: Verilog $stop

@@ -1,0 +1,27 @@
+diff --git a/rtl/ptw/ptw.sv b/rtl/ptw/ptw.sv
+--- a/rtl/ptw/ptw.sv
++++ b/rtl/ptw/ptw.sv
+@@ -206,6 +206,7 @@ assign g_aux_pte_addr = ((count_q == 0) && ((current_state != S_DONE) && (curren
+ 
+ // Page Table Entry pointer
+ logic [63:0] aux_pte_addr;
++logic [63:0] leaf_gpa;
+ assign aux_pte_addr = {{(64-(PPN_SIZE+PAGE_LVL_BITS+$clog2(riscv_pkg::XLEN/8))){1'b0}}, {r_pte.ppn, vpn_idx, {{($clog2(riscv_pkg::XLEN/8))}{1'b0}}}};
+ assign pte_addr = (is_virtualized_env & is_g_stage_q) ? g_aux_pte_addr[SIZE_VADDR:0] : aux_pte_addr[SIZE_VADDR:0]; // For Sv39: (r_pte.ppn << 12) + (vpn_idx << 3)
+ 
+@@ -421,6 +422,7 @@ generate
+ endgenerate
+ assign resp_ppn_lvl[LEVELS-1] = r_resp_ppn[PPN_SIZE-1:0];
+ assign resp_ppn = resp_ppn_lvl[count_q];
++assign leaf_gpa = {{(64-PPN_SIZE-12){1'b0}}, resp_ppn, 12'b0};
+ 
+ assign g_resp_ppn_lvl[LEVELS-1] = r_resp_ppn[PPN_SIZE-1:0];
+ assign g_resp_ppn = g_resp_ppn_lvl[count_q];
+@@ -562,6 +564,7 @@ always_comb begin
+           if (g_stage_only) last_g_stage_d = 1'b1;
+           vs_count_reg_d = count_q;
+           vs_pte_addr_reg_d = aux_pte_addr[SIZE_VADDR:0] ; // For Sv39: (r_pte.ppn << 12) + (vpn_idx << 3)
++          if (last_g_stage_q) vs_pte_addr_reg_d = leaf_gpa[SIZE_VADDR:0];  // G-stage input is the access's GPA, not the superpage base
+           count_d = '0;
+           virt_level_d   = count_q;
+           guest_pte_d.ppn = resp_ppn;

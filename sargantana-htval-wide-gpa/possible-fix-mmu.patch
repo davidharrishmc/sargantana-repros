@@ -1,0 +1,12 @@
+diff --git a/rtl/ptw/ptw.sv b/rtl/ptw/ptw.sv
+--- a/rtl/ptw/ptw.sv
++++ b/rtl/ptw/ptw.sv
+@@ -564,7 +564,7 @@ always_comb begin
+           vs_pte_addr_reg_d = aux_pte_addr[SIZE_VADDR:0] ; // For Sv39: (r_pte.ppn << 12) + (vpn_idx << 3)
+           count_d = '0;
+           virt_level_d   = count_q;
+-          guest_pte_d.ppn = resp_ppn;
++          guest_pte_d.ppn = last_g_stage_q ? {r_pte.ppn[PPN_SIZE-1:30], resp_ppn[29:0]} : resp_ppn;  // keep GPA bits above bit 41 for htval
+           guest_pte_d.rfs = r_pte.rfs;
+           guest_pte_d.d = g_stage_only ? 1'b1 : r_pte.d;
+           guest_pte_d.a = g_stage_only ? 1'b1 : r_pte.a;
