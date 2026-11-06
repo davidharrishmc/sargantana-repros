@@ -25,3 +25,4 @@ Standalone reproducers for issues filed against [bsc-loca/sargantana](https://gi
 | [sargantana#140](https://github.com/bsc-loca/sargantana/issues/140) | [sargantana-cbm-g-write](sargantana-cbm-g-write/) |
 | [sargantana#141](https://github.com/bsc-loca/sargantana/issues/141) | [sargantana-g-implicit-perm](sargantana-g-implicit-perm/) |
 | [sargantana#142](https://github.com/bsc-loca/sargantana/issues/142) | [sargantana-htval-wide-gpa](sargantana-htval-wide-gpa/) |
+| [sargantana#145](https://github.com/bsc-loca/sargantana/issues/145) | [sargantana-wrongpath-io-fetch](sargantana-wrongpath-io-fetch/) |

@@ -1,6 +1,6 @@
 # A wrong-path fetch from the IO region deadlocks core_tile
 
-Reproducer for a Sargantana issue (link added once filed).
+Reproducer for [sargantana#145](https://github.com/bsc-loca/sargantana/issues/145).
 
 A taken `beq` skips a `jal` whose target, 0x7fff_f00c, is in DracDefaultConfig's IO section (0x4000_0000-0x7fff_ffff).
 The `jal` is never executed, but the frontend follows it while the `beq` is unresolved. The fetch goes out as a
