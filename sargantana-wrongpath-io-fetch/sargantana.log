@@ -1,0 +1,3 @@
+[563] %Error: sim_top.sv:585: Assertion failed in TOP.sim_top:                  200 cycles without a valid commit.
+%Error: core_tile/simulator/sim_top.sv:585: Verilog $stop
+Aborting...
