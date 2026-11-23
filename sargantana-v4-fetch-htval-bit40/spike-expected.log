@@ -1,0 +1,7 @@
+VS-mode accesses whose guest physical address has bit 40 or bit 39 set (guest-page fault):
+                                        cause G mtval2         mtinst   a1          expected
+  lw   GPA (1<<40)+0x80003008          15 1 00004020000c02 00000000 ffffffff   expected 15 1 00004020000c02 --------
+  sw   GPA (1<<40)+0x80003008          17 1 00004020000c02 00000000 ffffffff   expected 17 1 00004020000c02 --------
+  jalr GPA (1<<40)+0x80003008          14 1 00004020000c02 00000000 ffffffff   expected 14 1 00004020000c02 --------
+  jalr GPA (1<<39)+0x80004008 (ctrl)   14 1 00002020001002 00000000 ffffffff   expected 14 1 00002020001002 --------
+spike exit code 0
